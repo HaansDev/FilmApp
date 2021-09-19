@@ -17,16 +17,19 @@ export enum searchType {
 
 export class FilmService {
   private api: string = 'http://www.omdbapi.com/';
-  private apiKey: string = 'e9cf0b58';
-  private url: string = '';
+  private apiKey: string = '7e9489de';
+  private url: string;
 
   constructor(private http: HttpClient) { }
 
-  searchFilms(title: string,type: searchType){
+  searchFilms(title: string,type: searchType): Observable<Film>{
     this.url = (`${this.api}?s=${encodeURI(title)}&type=${type}&apikey=${this.apiKey}`);
     // console.log(this.url);
     return this.http.get<Film>(this.url).pipe(
       map(results => results['Search'])
     );
+  }
+  getDetails(id) {
+    return this.http.get(`${this.url}?i=$id${id}&plot=full&apikey=${this.apiKey}`);
   }
 }

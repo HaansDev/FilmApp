@@ -9,16 +9,16 @@ import { Film } from '../../model/film.interface';
   styleUrls: ['./films.page.scss'],
 })
 export class FilmsPage implements OnInit {
-  results: Observable<any>;
-  textSearch: string  = '';
+  results: Observable<Film>;
+  textSearch: string;
   type: searchType = searchType.movie;
 
   constructor(private filmService: FilmService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  searchChanged(): void{
+  searchChanged(){
     this.results = this.filmService.searchFilms(this.textSearch, this.type);
   }
 }
