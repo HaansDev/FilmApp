@@ -24,12 +24,12 @@ export class FilmService {
 
   searchFilms(title: string,type: searchType): Observable<Film>{
     this.url = (`${this.api}?s=${encodeURI(title)}&type=${type}&apikey=${this.apiKey}`);
-    // console.log(this.url);
+    console.log(this.url);
     return this.http.get<Film>(this.url).pipe(
       map(results => results['Search'])
     );
   }
-  getDetails(id) {
-    return this.http.get(`${this.url}?i=$id${id}&plot=full&apikey=${this.apiKey}`);
+  getDetails(id: any) {
+    return this.http.get<Film>(`${this.api}?i=${id}&plot=full&apikey=${this.apiKey}`);
   }
 }
