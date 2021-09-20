@@ -16,7 +16,7 @@ export enum searchType {
 })
 
 export class FilmService {
-  private api: string = 'http://www.omdbapi.com/';
+  private api: string = 'https://www.omdbapi.com/';
   private apiKey: string = '7e9489de';
   private url: string;
 
